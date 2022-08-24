@@ -1,0 +1,151 @@
+% For PDF
+%\documentclass[a4paper,onecolumn]{report}
+% For double-sided printing
+\documentclass[a4paper,openright,twoside,onecolumn]{report}
+
+% Packages
+\usepackage{multirow}
+\usepackage{setspace}
+\usepackage{afterpage}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{tocloft}
+\usepackage{natbib}
+\usepackage{changepage}
+\usepackage{blindtext}
+\usepackage{lipsum}
+\usepackage[final]{pdfpages}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage[left=2cm,right=2cm,top=2cm]{geometry}
+
+\hypersetup{
+	colorlinks,
+	linktoc=page,
+	citecolor=red,
+	filecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue
+}
+
+\newcommand\blankpage{%
+	\null
+	\thispagestyle{empty}%
+	\addtocounter{page}{-1}%
+	\newpage}
+
+% --- Document metadata ---
+% Title page is going to render details from here
+\title{My very important thesis topic}
+\author{Anton Ashmarin}
+\date{\today}
+
+% --- Custom styles ---
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+\makeatletter
+\edef\mytitle{\@title}
+\makeatother
+
+\makeatletter
+\edef\myself{\@author}
+\makeatother
+
+% Here we redefine page numeration
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\mytitle}
+\fancyhead[RE,LO]{CQF Institute}
+\fancyfoot[CE,CO]{\nouppercase{\rightmark}}
+\fancyfoot[LE,RO]{\thepage}
+
+% --- Document begin ---
+\begin{document}
+
+% This way ToC and Bibliography appears like a Section, not Chapter, + center-aligned
+\makeatletter
+\renewcommand\tableofcontents{
+  \section*{
+    \center\contentsname
+    \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}}
+  \@starttoc{toc}}
+\makeatother
+
+\makeatletter
+\renewcommand\listoffigures{
+  \section*{
+    \center\listfigurename
+    \@mkboth{\MakeUppercase\listfigurename}{\MakeUppercase\listfigurename}}
+  \@starttoc{lof}}
+\makeatother
+
+\makeatletter
+\renewcommand\listoftables{
+  \section*{
+    \center\listtablename
+    \@mkboth{\MakeUppercase\listtablename}{\MakeUppercase\listtablename}}
+  \@starttoc{lot}}
+\makeatother
+
+\makeatletter
+\renewcommand\bibsection{
+  \section*{
+    \center\bibname
+    \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}}}
+\makeatother
+
+% --- Title page ---
+\include{title_page}
+
+% --- Abstract ---
+\input{abstract}
+
+\pagenumbering{arabic}
+\setcounter{page}{2}
+
+% --- Table of contents ---
+{\let\clearpage\relax} % To remove pagebreak
+\fancypagestyle{plain}{}
+\begin{spacing}{1.2}
+	\tableofcontents
+	\listoffigures
+	\listoftables
+\end{spacing}
+
+\newpage
+
+% --- Document body ---
+% Please put all the content here. Note \section{} is the highest level of header hierarchy.
+%\include{content file you want to render from the new page}
+%\input{content file you want to render without page breaks}
+
+\include{content}
+
+% --- Bibliography ---
+
+\newpage
+\addcontentsline{toc}{section}{\protect\numberline{}\bibname}
+\bibliographystyle{plain}
+\fancypagestyle{plain}{}
+\renewcommand{\bibname}{References}
+\nocite{*} % list all refs in database, cited or not
+\bibliography{ref}
+
+% --- Appendix ---
+
+\include{appendix}
+
+% --- Document end ---
+\end{document}

@@ -1,0 +1,23 @@
+\appendix
+
+\addcontentsline{toc}{section}{Appendicies}
+
+\phantomsection\label{Setup}
+\addcontentsline{toc}{subsection}{Environment setup}
+\section*{Environment setup}
+
+To run the Jupyter notebook install dependencies:
+
+\begin{lstlisting}[language=bash]
+pip install -r requirements.txt
+\end{lstlisting}
+
+% Include plain text in the report
+\verbatiminput{res/requirements.txt}
+
+
+\newpage
+\phantomsection\label{SomePdf}
+\addcontentsline{toc}{subsection}{Supplied pdf document}
+% Note: pdf will be rendered as is, without the page numbers and styles
+\includepdf[pages=-]{res/some.pdf}
