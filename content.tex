@@ -33,14 +33,41 @@ This is how you create nice tables, and reference them (See table ~\ref{table:ta
     \end{center}
 \end{figure}
 
-This is how you do math:
+This is how you do math and reference equations (\ref{eq:1}):
+
+\begin{equation} \label{eq:1}
+    w^*=\frac{\Sigma^{-1}(\mu_{BL}-r_f\mathbf{1})}{\mathbf{1}^T\Sigma^{-1}(\mu_{BL}-r_f\mathbf{1})}   
+\end{equation}
+
 $$
-w^*=\frac{\Sigma^{-1}(\mu_{BL}-r_f\mathbf{1})}{\mathbf{1}^T\Sigma^{-1}(\mu_{BL}-r_f\mathbf{1})}
+E = mC^2
 $$
 
 This is how you inline math: 
 $\quad \dfrac{\partial L}{\partial \omega}(\omega, \lambda, \gamma) = \omega'\Sigma - \lambda\mu' - \gamma\mathbf{1}' = 0 \quad$ 
 in the normal text
+
+This is how you do bullet lists:
+
+\begin{itemize}
+    \item Item 1
+    \item Item 2
+    \item Item 3
+\end{itemize}
+
+Or numbered lists:
+
+\begin{enumerate}
+    \item Item
+    \item Item
+    \item Item
+\end{enumerate}
+
+\noindent
+New paragraph with no indent. New paragraph with no indent. New paragraph with no indent. New paragraph with no indent. New paragraph with no indent. New paragraph with no indent. New paragraph with no indent.
+
+Paragraph with indent. Paragraph with indent. Paragraph with indent. Paragraph with indent. Paragraph with indent. Paragraph with indent. Paragraph with indent. Paragraph with indent. Paragraph with indent. Paragraph with indent.
+
 
 \newpage
 \section{Methods}
